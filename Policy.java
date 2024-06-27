@@ -3,6 +3,7 @@ public class Policy
    // declaring variables
    private String policyNumber;
    private String providerName;
+   private PolicyHolder policyHolder;
    
    // no-arg constructor
    public Policy()
@@ -61,5 +62,12 @@ public class Policy
    public String getProviderName()
    {
       return providerName;
+   }
+   
+   public String toString()
+   {
+      return String.format("Policy Number: " + policyNumber +
+                           "\nProvider Name: " + providerName +
+                           policyHolder.toString());
    }
 }

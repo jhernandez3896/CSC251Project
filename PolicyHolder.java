@@ -9,7 +9,7 @@ public class PolicyHolder
    private double weight;
    
    // no-arg constructor
-   public Policy()
+   public PolicyHolder()
    {
       firstName = "";
       lastName = "";
@@ -28,10 +28,8 @@ public class PolicyHolder
       @param h             the policyholder's height
       @param w             the policyholder's weight
    **/
-   public Policy (String fn, String ln, int years, String smoke, double h, double w)
+   public PolicyHolder (String fn, String ln, int years, String smoke, double h, double w)
    {
-      policyNumber = num;
-      providerName = provider;
       firstName = fn;
       lastName = ln;
       age = years;
@@ -188,5 +186,19 @@ public class PolicyHolder
          policyPrice += ((getBMI() - BMI_THRESHOLD) * ADDITIONAL_FEE_PER_BMI);
          
       return policyPrice;
+   }
+   
+   public String toString()
+   {
+      return String.format("Policyholder's First Name: " + firstName +
+                           "\nPolicyholder's Last Name: " + lastName +
+                           "\nPolicyholder's Age: " + age +
+                           "\nPolicyholder's Smoking Status (Y/N): " + smokeStatus +
+                           "\nPolicyholder's Height: " + height +
+                           "\nPolicyholder's Weight: " + weight +
+                           "\nPolicyholder's BMI: " + getBMI() +
+                           "\nPolicy Price: " + getPrice());
+                           
+      
    }
 }
