@@ -3,6 +3,7 @@ public class Policy
    // declaring variables
    private String policyNumber;
    private String providerName;
+   private static int objectCount = 0;
    private PolicyHolder policyHolder;
    
    // no-arg constructor
@@ -10,6 +11,7 @@ public class Policy
    {
       policyNumber = "";
       providerName = "";
+      objectCount++;
    }
    
    /**
@@ -62,6 +64,11 @@ public class Policy
    public String getProviderName()
    {
       return providerName;
+   }
+   
+   public int getObjectCount()
+   {
+      return objectCount;
    }
    
    public String toString()

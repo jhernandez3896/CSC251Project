@@ -11,6 +11,7 @@ public class Project_Julian_BernabeHernandez
       String smokeStatus = " ";
       int age;
       double height, weight;
+      int numberOfObjects;
       int totalsmokers = 0; // the total number of smokers
       int totalnsmokers = 0; // the total number of non-smokers
       
@@ -68,7 +69,10 @@ public class Project_Julian_BernabeHernandez
                totalnsmokers += 1;
             else
                totalsmokers += 1;
-         } 
+         }
+         
+         numberOfObjects = objectCount1.getObjectCount();
+         System.out.println("There were " + numberOfObjects + " Policy objects created.");
          
          System.out.println("The number of policies with a smoker is: " + totalsmokers);
          System.out.println("The number of policies with a non-smoker is: " + totalnsmokers); 
