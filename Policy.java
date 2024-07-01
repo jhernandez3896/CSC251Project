@@ -3,7 +3,6 @@ public class Policy
    // declaring variables
    private String policyNumber;
    private String providerName;
-   private static int objectCount = 0;
    private PolicyHolder policyHolder;
    
    // no-arg constructor
@@ -11,7 +10,6 @@ public class Policy
    {
       policyNumber = "";
       providerName = "";
-      objectCount++;
    }
    
    /**
@@ -24,6 +22,18 @@ public class Policy
    {
       policyNumber = num;
       providerName = provider;
+   }
+   
+   /**
+      A copy constructor of the TextBook class that it is passed as a parameter.
+      It's used to avoid security holes.
+      @param object2 - the object to copy
+   **/
+   
+   public Policy(Policy object2)
+   {
+      policyNumber = object2.policyNumber;
+      providerName = object2.providerName;
    }
    
    // setters
@@ -46,6 +56,7 @@ public class Policy
       providerName = provider;
    }
    
+   
    // getters
    
    /**
@@ -66,15 +77,9 @@ public class Policy
       return providerName;
    }
    
-   public int getObjectCount()
-   {
-      return objectCount;
-   }
-   
    public String toString()
    {
       return String.format("Policy Number: " + policyNumber +
-                           "\nProvider Name: " + providerName +
-                           policyHolder.toString());
+                           "\nProvider Name: " + providerName);
    }
 }

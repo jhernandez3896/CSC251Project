@@ -8,6 +8,10 @@ public class PolicyHolder
    private double height;
    private double weight;
    
+   private static int objectCount = 0;
+   
+   private Policy policy; // instance of the Policy class
+   
    // no-arg constructor
    public PolicyHolder()
    {
@@ -28,7 +32,7 @@ public class PolicyHolder
       @param h             the policyholder's height
       @param w             the policyholder's weight
    **/
-   public PolicyHolder (String fn, String ln, int years, String smoke, double h, double w)
+   public PolicyHolder (String fn, String ln, int years, String smoke, double h, double w, Policy p)
    {
       firstName = fn;
       lastName = ln;
@@ -36,6 +40,7 @@ public class PolicyHolder
       smokeStatus = smoke;
       height = h;
       weight = w;
+      policy = new Policy (p); //A copy contructor of the Policy class to avoid security holes
    }
    
    // setters
@@ -92,6 +97,15 @@ public class PolicyHolder
    public void setWeight(double w)
    {
       weight = w;
+   }
+   
+   /**
+      @param book - a Policy object  
+   **/  
+   
+   public void setPolicy(Policy p)
+   {
+      policy = new Policy(p);
    }
    
    // getters
@@ -160,6 +174,7 @@ public class PolicyHolder
       
       return (weight * CONVERTFACTOR) / (height * height);
    }
+   
    /**
       the getPrice method calculates and returns the final policy price based on the policyholder's age, smoking status, and BMI
       @param none
@@ -188,17 +203,34 @@ public class PolicyHolder
       return policyPrice;
    }
    
+   /**
+      the getPolicy method returns a reference to a copy of this Policyholder's Policy object
+   **/   
+   public Policy getPolicy()
+   {
+      return new Policy(policy); 
+   }
+   
+   /**
+      the getObjectCount method retrieves the count of objects
+   **/  
+   public int getObjectCount()
+   {
+      objectCount++;
+      return objectCount;
+   }
+   
    public String toString()
    {
-      return String.format("Policyholder's First Name: " + firstName +
-                           "\nPolicyholder's Last Name: " + lastName +
-                           "\nPolicyholder's Age: " + age +
-                           "\nPolicyholder's Smoking Status (Y/N): " + smokeStatus +
-                           "\nPolicyholder's Height: " + height +
-                           "\nPolicyholder's Weight: " + weight +
-                           "\nPolicyholder's BMI: " + getBMI() +
-                           "\nPolicy Price: " + getPrice());
-                           
-      
+      String str = policy.toString() +
+                   "\nPolicyholder's First Name: " + firstName +
+                   "\nPolicyholder's Last Name: " + lastName +
+                   "\nPolicyholder's Age: " + age +
+                   "\nPolicyholder's Smoking Status (Y/N): " + smokeStatus +
+                   "\nPolicyholder's Height: " + height + " inches" +
+                   "\nPolicyholder's Weight: " + weight + " pounds" +
+                   "\nPolicyholder's BMI: " + String.format("%.2f",getBMI()) +
+                   "\nPolicy Price: " + String.format("$%.2f",getPrice());
+      return str;
    }
 }
